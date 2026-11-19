@@ -1,0 +1,64 @@
+<section data-slug="relations">
+  <h1 class="head">누가 무엇을 주고받나</h1>
+  <figure class="viz body" data-viz="relations">
+    <script type="application/json">
+      {
+        "cols": 3,
+        "rows": 2,
+        "nodes": [
+          {
+            "id": "user",
+            "label": "이용자",
+            "col": 0,
+            "row": 0
+          },
+          {
+            "id": "app",
+            "label": "숨길",
+            "col": 1,
+            "row": 0,
+            "accent": true
+          },
+          {
+            "id": "city",
+            "label": "지자체",
+            "col": 2,
+            "row": 0
+          },
+          {
+            "id": "shop",
+            "label": "제휴처",
+            "col": 1,
+            "row": 1
+          }
+        ],
+        "links": [
+          {
+            "from": "user",
+            "to": "app",
+            "label": "경로 선택"
+          },
+          {
+            "from": "app",
+            "to": "user",
+            "label": "적립",
+            "accent": true,
+            "offset": 40
+          },
+          {
+            "from": "city",
+            "to": "app",
+            "label": "예산",
+            "s": 1
+          },
+          {
+            "from": "app",
+            "to": "shop",
+            "label": "포인트 사용"
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">관계 · relations</p>
+</section>

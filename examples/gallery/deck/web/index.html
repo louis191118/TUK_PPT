@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>템플릿 갤러리</title>
+<link rel="icon" href="data:,">
+<!-- deck.mjs assemble이 만든 파일. 직접 고치지 않는다: slides/<slug>.html·slides/<slug>.md·evidence/를 고치고 다시 assemble -->
+<link rel="stylesheet" href="vendor/reveal/reset.css">
+<link rel="stylesheet" href="vendor/reveal/reveal.css">
+<link rel="stylesheet" href="vendor/fonts/pretendard/pretendard.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+<!-- km-cells -->
+<section id="s-km-cells" data-slug="km-cells">
+  <h1 class="head">한 칸 덜 달리면 그만큼 덜 배출</h1>
+  <figure class="viz body" data-viz="custom" data-module="custom/km-cells.js">
+    <script type="application/json">{}</script>
+  </figure>
+  <p class="foot-l">직접 설계 · custom/km-cells.js</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 패턴 없이 장마다 직접 설계한 그림이 어떻게 붙는지 보인다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>1킬로미터를 한 칸으로 그렸습니다. 실시간 추천은 34칸, 거리우선은 33칸입니다. [→] 같은 계수라 배출량은 칸 수에 비례합니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 직접 설계 경로 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- scene3d -->
+<section id="s-scene3d" data-slug="scene3d" data-wait="2600">
+  <h1 class="head">돌아가는 길이 조금 더 길다</h1>
+  <figure class="viz body" data-viz="custom" data-module="custom/route3d.js">
+    <script type="application/json">{ "note": false, "alt": "도식 도시 위 두 경로. 회색 실시간 추천 경로가 바깥으로 돌고, 녹색 거리우선 경로가 계단처럼 가로지른다" }</script>
+  </figure>
+  <p class="foot-l">지도 도식 · 실제 경로 형상 아님</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 장면 스크립트로 구운 3D 도식 장면이 단계에 맞춰 움직이는 장을 보인다(`references/3d.md` 출발점)</p>
+<p><b>담당·시간</b> - · 12초</p>
+<h4>대본</h4>
+<p>출발에서 도착까지 두 길이 있습니다. [→] 실시간 추천은 바깥으로 돌아 34킬로미터입니다. [→] 거리우선은 도시를 가로질러 33킬로미터입니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 지도인가? → A 아닙니다. 도식입니다. 두 길이의 비율만 근거(km-a ÷ km-b)에 맞췄습니다.</li></ul>
+</aside>
+</section>
+
+<!-- asset3d -->
+<section id="s-asset3d" data-slug="asset3d" data-wait="3200">
+  <figure class="viz" data-viz="custom" data-module="viz/inspect3d.js">
+  <script type="application/json">{
+    "models": [ { "file": "assets/3d/power-bank.glb" } ],
+    "poster": "assets/3d/power-bank-poster.png",
+    "kicker": "보조배터리 · 도식",
+    "credit": "직접 만든 도식 조립품 · 셀 규격만 실제(18650) · 예시 치수",
+    "shadow": [0.26, 0.13], "floorDrop": 0.03,
+    "groups": {
+      "shell": { "name": "케이스", "explode": [0, 0.05, 0], "order": 0, "shell": true, "sub": { "case_top": [0, 0.03, 0] } },
+      "battery": { "name": "셀 · 홀더", "explode": [-0.02, -0.02, 0], "order": 1, "sub": { "nickel_strip": [0, 0.012, 0] } },
+      "board": { "name": "회로 기판", "explode": [0.035, 0.03, 0], "order": 2 },
+      "ports": { "name": "단자 · 표시등", "explode": [0.07, 0.05, 0], "order": 2 }
+    },
+    "steps": [
+      { "name": "외관", "paint": 1, "ex": 0, "cam": { "t": [0, 0.013, 0], "az": 38, "el": 18, "d": 0.36 }, "idleSpin": true },
+      { "name": "투시", "paint": 0, "ghost": 1, "ex": 0, "cam": { "t": [0, 0.013, 0], "az": 28, "el": 26, "d": 0.36 } },
+      { "name": "분해", "paint": 0, "ghost": 0.8, "ex": 1, "tags": true, "cam": { "t": [0.03, 0.035, 0], "az": 62, "el": 22, "d": 0.62 } },
+      { "name": "셀", "paint": 0, "ghost": 0.18, "ex": 1, "focus": ["battery"], "sub": 1, "anchor": "cells", "cam": { "t": [-0.01, 0.0, 0], "az": 24, "el": 40, "d": 0.4 }, "card": { "title": "원통형 셀", "num": "pb-cells", "note": "18650 · 길이 {pb-cell-mm}" } },
+      { "name": "조립", "paint": 1, "ex": 0, "cam": { "t": [0, 0.013, 0], "az": -32, "el": 14, "d": 0.36 }, "idleSpin": true }
+    ]
+  }</script>
+  </figure>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span><span class="fragment step" data-fragment-index="2"></span><span class="fragment step" data-fragment-index="3"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 3D 에셋 소개 장(inspect3d)이 외관 → 투시 → 분해 → 부품 초점 → 조립으로 둘러보는 모습을 보인다</p>
+<p><b>담당·시간</b> - · 15초</p>
+<h4>대본</h4>
+<p>보조배터리 하나를 열어 보겠습니다. [→] 케이스를 비추면 안이 보입니다. [→] 부품을 나누면 셀, 기판, 단자입니다. [→] 원통형 셀 6개가 들어 있습니다. [→] 다시 닫습니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 제품인가? → A 아닙니다. 셀 규격(18650)만 실제이고 나머지 치수는 예시인 도식 조립품입니다.</li></ul>
+</aside>
+</section>
+
+<!-- compare -->
+<section id="s-compare" data-slug="compare">
+  <h1 class="head">느린 길이 덜 배출</h1>
+  <figure class="viz body" data-viz="bars">
+    <script type="application/json">
+      {
+        "items": [
+          {
+            "label": "실시간 추천",
+            "num": "car-a"
+          },
+          {
+            "label": "거리우선",
+            "num": "car-b",
+            "accent": true
+          },
+          {
+            "label": "고속도로",
+            "num": "car-c"
+          },
+          {
+            "label": "국도",
+            "num": "car-d",
+            "off": true
+          }
+        ],
+        "unit": "kg",
+        "mean": true,
+        "meanLabel": "후보 평균",
+        "steps": {
+          "accent": 1,
+          "mean": 2
+        }
+      }
+    </script>
+  </figure>
+  <p class="foot-l">비교 · bars</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 비교 템플릿(bars)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 비교 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 이어서 말합니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- flip -->
+<section id="s-flip" data-slug="flip">
+  <h1 class="head">한계: 짧은 길이 연료를 더 쓸 때</h1>
+  <figure class="viz body" data-viz="groups">
+    <script type="application/json">
+      {
+        "groups": [
+          {
+            "title": "거리",
+            "unit": "km",
+            "items": [
+              {
+                "label": "거리우선",
+                "num": "km-b",
+                "accent": true
+              },
+              {
+                "label": "실시간 추천",
+                "num": "km-a"
+              }
+            ]
+          },
+          {
+            "title": "연료",
+            "unit": "L",
+            "items": [
+              {
+                "label": "거리우선",
+                "num": "l-b",
+                "accent": true
+              },
+              {
+                "label": "실시간 추천",
+                "num": "l-a"
+              }
+            ]
+          }
+        ],
+        "steps": {
+          "g2": 1,
+          "note": 2
+        },
+        "note": "막대 순서가 뒤집힌다"
+      }
+    </script>
+  </figure>
+  <p class="foot-l">한계·반례 · groups</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 한계·반례 템플릿(groups)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 한계·반례 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 이어서 말합니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- trend -->
+<section id="s-trend" data-slug="trend">
+  <h1 class="head">다른 부문은 줄고 수송은 그대로</h1>
+  <figure class="viz body" data-viz="line">
+    <script type="application/json">
+      {
+        "series": [
+          {
+            "label": "수송",
+            "accent": true,
+            "points": [
+              {
+                "x": "2019",
+                "num": "y2019"
+              },
+              {
+                "x": "2020",
+                "num": "y2020"
+              },
+              {
+                "x": "2021",
+                "num": "y2021"
+              },
+              {
+                "x": "2022",
+                "num": "y2022"
+              },
+              {
+                "x": "2023",
+                "num": "y2023"
+              }
+            ]
+          },
+          {
+            "label": "다른 부문",
+            "points": [
+              {
+                "x": "2019",
+                "num": "z2019"
+              },
+              {
+                "x": "2020",
+                "num": "z2020"
+              },
+              {
+                "x": "2021",
+                "num": "z2021"
+              },
+              {
+                "x": "2022",
+                "num": "z2022"
+              },
+              {
+                "x": "2023",
+                "num": "z2023"
+              }
+            ]
+          }
+        ],
+        "unit": "Mt",
+        "steps": {
+          "accent": 1
+        }
+      }
+    </script>
+  </figure>
+  <p class="foot-l">추세 · line</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 추세 템플릿(line)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 추세 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- share -->
+<section id="s-share" data-slug="share">
+  <h1 class="head">수송 배출 대부분은 도로</h1>
+  <figure class="viz body" data-viz="stack">
+    <script type="application/json">
+      {
+        "rows": [
+          {
+            "label": "수송",
+            "items": [
+              {
+                "label": "도로",
+                "num": "s-road",
+                "accent": true
+              },
+              {
+                "label": "항공",
+                "num": "s-air"
+              },
+              {
+                "label": "기타",
+                "num": "s-other"
+              }
+            ]
+          }
+        ],
+        "unit": "%",
+        "steps": {
+          "accent": 1
+        }
+      }
+    </script>
+  </figure>
+  <p class="foot-l">구성 · stack</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 구성 템플릿(stack)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 구성 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- scale -->
+<section id="s-scale" data-slug="scale">
+  <h1 class="head">한 번은 작아도 1년이면 520번</h1>
+  <figure class="viz body" data-viz="tiles">
+    <script type="application/json">
+      {
+        "num": "trips",
+        "per": 1,
+        "tileLabel": "편도 1회",
+        "countLabel": "번 (1년)",
+        "steps": {
+          "total": 1
+        }
+      }
+    </script>
+  </figure>
+  <p class="foot-l">규모·환산 · tiles</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 규모·환산 템플릿(tiles)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 규모·환산 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- history -->
+<section id="s-history" data-slug="history">
+  <h1 class="head">정책은 2020년부터 쌓였다</h1>
+  <figure class="viz body" data-viz="timeline">
+    <script type="application/json">
+      {
+        "events": [
+          {
+            "when": 2015,
+            "label": "목표 발표"
+          },
+          {
+            "when": 2018,
+            "label": "계수 고시"
+          },
+          {
+            "when": 2020,
+            "label": "2050 선언",
+            "accent": true,
+            "s": 1
+          },
+          {
+            "when": 2023,
+            "label": "기본계획",
+            "s": 2
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">시간 · timeline</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 시간 템플릿(timeline)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 시간 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 이어서 말합니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- how -->
+<section id="s-how" data-slug="how">
+  <h1 class="head">길찾기 흐름 그대로, 끝에 확인</h1>
+  <figure class="viz body" data-viz="flow">
+    <script type="application/json">
+      {
+        "steps": [
+          {
+            "label": "출발·도착",
+            "sub": "평소처럼 입력"
+          },
+          {
+            "label": "후보별 CO₂",
+            "sub": [
+              "경로마다",
+              "예상 배출"
+            ],
+            "accent": true
+          },
+          {
+            "label": "안내",
+            "sub": "고른 길로",
+            "s": 1
+          },
+          {
+            "label": "도착 확인",
+            "sub": "평균보다 적으면 적립",
+            "s": 2
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">과정·흐름 · flow</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 과정·흐름 템플릿(flow)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 과정·흐름 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 이어서 말합니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- formula -->
+<section id="s-formula" data-slug="formula">
+  <h1 class="head">1km 덜 달리면 0.23kg 덜 배출</h1>
+  <figure class="viz body" data-viz="equation">
+    <script type="application/json">
+      {
+        "terms": [
+          {
+            "word": "거리",
+            "num": "km-b"
+          },
+          {
+            "op": "×"
+          },
+          {
+            "word": "1km당 계수",
+            "num": "factor"
+          },
+          {
+            "op": "="
+          },
+          {
+            "word": "배출량",
+            "num": "eq-kg",
+            "accent": true
+          }
+        ],
+        "steps": {
+          "numbers": 1,
+          "result": 2
+        }
+      }
+    </script>
+  </figure>
+  <p class="foot-l">산식 · equation</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 산식 템플릿(equation)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 산식 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 이어서 말합니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- relation -->
+<section id="s-relation" data-slug="relation">
+  <h1 class="head">이용자가 많을수록 감소폭도 컸다</h1>
+  <figure class="viz body" data-viz="scatter">
+    <script type="application/json">
+      {
+        "points": [
+          {
+            "label": "도시 A",
+            "x": "users-a",
+            "y": "cut-a",
+            "accent": true,
+            "s": 1
+          },
+          {
+            "label": "도시 B",
+            "x": "users-b",
+            "y": "cut-b"
+          },
+          {
+            "label": "도시 C",
+            "x": "users-c",
+            "y": "cut-c"
+          }
+        ],
+        "xLabel": "이용자(만 명)",
+        "yLabel": "감소율(%)"
+      }
+    </script>
+  </figure>
+  <p class="foot-l">관계 · scatter</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 관계 템플릿(scatter)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 관계 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- result -->
+<section id="s-result" data-slug="result">
+  <h1 class="head">1년이면 이만큼 차이</h1>
+  <figure class="viz body" data-viz="hero">
+    <script type="application/json">
+      {
+        "num": "year-kg",
+        "countUp": true,
+        "caption": "편도 520회 × 1회 차이",
+        "steps": {
+          "caption": 1
+        }
+      }
+    </script>
+  </figure>
+  <p class="foot-l">핵심 숫자 · hero</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 핵심 숫자 템플릿(hero)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 핵심 숫자 근거를 보여 줍니다. 숫자는 예시 값입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 값인가? → A 아닙니다. 템플릿 시연용 예시 값입니다.</li></ul>
+</aside>
+</section>
+
+<!-- position -->
+<section id="s-position" data-slug="position">
+  <h1 class="head">배출까지 비교하고 도착에 보상</h1>
+  <figure class="viz body" data-viz="position">
+    <script type="application/json">
+      {
+        "x": {
+          "low": "시간·거리",
+          "high": "배출까지",
+          "label": "경로를 무엇까지 비교하나"
+        },
+        "y": {
+          "low": "보상 없음",
+          "high": "경로·도착 연동",
+          "label": "무엇에 보상하나"
+        },
+        "items": [
+          {
+            "label": "지도 앱",
+            "sub": "경로 비교",
+            "x": 0.15,
+            "y": 0.05
+          },
+          {
+            "label": "친환경 경로",
+            "sub": "일부 국가",
+            "x": 0.85,
+            "y": 0.05
+          },
+          {
+            "label": "걷기 리워드",
+            "sub": "활동 인증",
+            "x": 0.15,
+            "y": 0.5
+          },
+          {
+            "label": "숨길",
+            "sub": "후보 평균 연동 적립",
+            "x": 0.85,
+            "y": 0.95,
+            "accent": true,
+            "ref": "policy-note"
+          }
+        ],
+        "steps": {
+          "accent": 1
+        }
+      }
+    </script>
+  </figure>
+  <p class="foot-l">차별점 · position</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 차별점 근거 템플릿(position)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 차별점 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- contrast -->
+<section id="s-contrast" data-slug="contrast">
+  <h1 class="head">같은 길찾기, 끝에 확인 하나</h1>
+  <figure class="viz body" data-viz="contrast">
+    <script type="application/json">
+      {
+        "a": {
+          "title": "지금 길찾기"
+        },
+        "b": {
+          "title": "숨길"
+        },
+        "rows": [
+          {
+            "label": "후보 비교",
+            "a": "시간·거리",
+            "b": "시간·거리·CO₂"
+          },
+          {
+            "label": "고른 뒤",
+            "a": "안내 끝",
+            "b": "도착 확인",
+            "accent": true
+          },
+          {
+            "label": "보상",
+            "a": "없음",
+            "b": "평균보다 덜 배출하면 적립"
+          }
+        ],
+        "steps": {
+          "b": 1
+        }
+      }
+    </script>
+  </figure>
+  <p class="foot-l">대비 · contrast</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 대비 근거 템플릿(contrast)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 대비 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- chain -->
+<section id="s-chain" data-slug="chain">
+  <h1 class="head">보이면 고르고, 고르면 쌓인다</h1>
+  <figure class="viz body" data-viz="chain">
+    <script type="application/json">
+      {
+        "nodes": [
+          {
+            "label": "배출이 보임",
+            "sub": "후보마다 kg"
+          },
+          {
+            "label": "덜 배출하는 길 선택",
+            "sub": [
+              "5분 더 걸려도"
+            ]
+          },
+          {
+            "label": "도착 확인",
+            "sub": "GPS 기록",
+            "s": 1
+          },
+          {
+            "label": "적립·누적",
+            "sub": "1년 520회",
+            "accent": true,
+            "s": 2
+          }
+        ],
+        "via": [
+          "비교",
+          "실행",
+          "보상"
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">인과 · chain</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 인과 근거 템플릿(chain)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 인과 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 이어서 말합니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- tree -->
+<section id="s-tree" data-slug="tree">
+  <h1 class="head">배출 계산은 세 갈래</h1>
+  <figure class="viz body" data-viz="tree">
+    <script type="application/json">
+      {
+        "root": {
+          "label": "경로 배출",
+          "sub": "kgCO₂"
+        },
+        "children": [
+          {
+            "label": "자동차",
+            "children": [
+              {
+                "label": "거리"
+              },
+              {
+                "label": "연료별 계수"
+              }
+            ]
+          },
+          {
+            "label": "대중교통",
+            "accent": true,
+            "s": 1,
+            "children": [
+              {
+                "label": "탑승 구간만"
+              },
+              {
+                "label": "수단별 계수"
+              }
+            ]
+          },
+          {
+            "label": "도보·자전거",
+            "children": [
+              {
+                "label": "0으로 처리"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">구조 · tree</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 구조 근거 템플릿(tree)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 구조 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- cycle -->
+<section id="s-cycle" data-slug="cycle">
+  <h1 class="head">쓸수록 기준이 다듬어진다</h1>
+  <figure class="viz body" data-viz="cycle">
+    <script type="application/json">
+      {
+        "center": "숨길",
+        "nodes": [
+          {
+            "label": "조회",
+            "sub": "후보 경로"
+          },
+          {
+            "label": "선택"
+          },
+          {
+            "label": "도착 확인",
+            "accent": true,
+            "s": 1
+          },
+          {
+            "label": "기록",
+            "sub": "평균 갱신"
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">순환 · cycle</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 순환 근거 템플릿(cycle)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 순환 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- matrix -->
+<section id="s-matrix" data-slug="matrix">
+  <h1 class="head">세 조건을 다 갖춘 건 하나</h1>
+  <figure class="viz body" data-viz="matrix">
+    <script type="application/json">
+      {
+        "cols": [
+          "배출 비교",
+          "도착 확인",
+          "보상"
+        ],
+        "rows": [
+          {
+            "label": "지도 앱",
+            "cells": [
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "label": "친환경 경로",
+            "cells": [
+              true,
+              false,
+              false
+            ]
+          },
+          {
+            "label": "걷기 리워드",
+            "cells": [
+              false,
+              "part",
+              true
+            ]
+          },
+          {
+            "label": "숨길",
+            "cells": [
+              true,
+              true,
+              true
+            ],
+            "accent": true,
+            "s": 1
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">조건 비교 · matrix</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 조건 비교 근거 템플릿(matrix)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 조건 비교 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- gaps -->
+<section id="s-gaps" data-slug="gaps">
+  <h1 class="head">아직 증명하지 못한 것 셋</h1>
+  <figure class="viz body" data-viz="gaps">
+    <script type="application/json">
+      {
+        "nowTitle": "지금",
+        "goalTitle": "검증",
+        "rows": [
+          {
+            "label": "계수",
+            "now": "공식 평균값",
+            "goal": [
+              "차종·속도 반영"
+            ]
+          },
+          {
+            "label": "도착 확인",
+            "now": "GPS 기록 재생",
+            "goal": "실사용 기록",
+            "s": 1
+          },
+          {
+            "label": "고객",
+            "now": "가정",
+            "goal": "인터뷰",
+            "accent": true,
+            "s": 2
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">한계·과제 · gaps</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 한계·과제 근거 템플릿(gaps)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 한계·과제 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 이어서 말합니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- screen -->
+<section id="s-screen" data-slug="screen">
+  <h1 class="head">실제 화면에서 고르고 확인</h1>
+  <figure class="viz body" data-viz="screen">
+    <script type="application/json">
+      {
+        "asset": "demo-screen",
+        "w": 390,
+        "h": 844,
+        "height": 640,
+        "callouts": [
+          {
+            "x": 200,
+            "y": 60,
+            "label": "출발·도착",
+            "side": "left"
+          },
+          {
+            "x": 350,
+            "y": 300,
+            "label": "후보별 CO₂",
+            "sub": "덜 배출하는 길 강조",
+            "accent": true,
+            "side": "right"
+          },
+          {
+            "x": 200,
+            "y": 790,
+            "label": "안내 시작",
+            "side": "left",
+            "s": 1
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">실물 · screen</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 실물 근거 템플릿(screen)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 실물 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- filter -->
+<section id="s-filter" data-slug="filter">
+  <h1 class="head">평균은 이렇게 정한다</h1>
+  <figure class="viz body" data-viz="filter">
+    <script type="application/json">
+      {
+        "rules": [
+          "중복 제거",
+          "통행 불가 제외",
+          "평균 계산"
+        ],
+        "items": [
+          {
+            "label": "실시간 추천"
+          },
+          {
+            "label": "거리우선"
+          },
+          {
+            "label": "고속도로"
+          },
+          {
+            "label": "고속도로 2",
+            "out": 1,
+            "why": "같은 길"
+          },
+          {
+            "label": "국도",
+            "out": 2,
+            "why": "통제"
+          }
+        ],
+        "result": "남은 세 후보로 평균"
+      }
+    </script>
+  </figure>
+  <p class="foot-l">기준·규칙 · filter</p>
+
+<span class="fragment step" data-fragment-index="0"></span><span class="fragment step" data-fragment-index="1"></span><span class="fragment step" data-fragment-index="2"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 기준·규칙 근거 템플릿(filter)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 기준·규칙 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 이어서 말합니다. [→] 이어서 말합니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+
+<!-- relations -->
+<section id="s-relations" data-slug="relations">
+  <h1 class="head">누가 무엇을 주고받나</h1>
+  <figure class="viz body" data-viz="relations">
+    <script type="application/json">
+      {
+        "cols": 3,
+        "rows": 2,
+        "nodes": [
+          {
+            "id": "user",
+            "label": "이용자",
+            "col": 0,
+            "row": 0
+          },
+          {
+            "id": "app",
+            "label": "숨길",
+            "col": 1,
+            "row": 0,
+            "accent": true
+          },
+          {
+            "id": "city",
+            "label": "지자체",
+            "col": 2,
+            "row": 0
+          },
+          {
+            "id": "shop",
+            "label": "제휴처",
+            "col": 1,
+            "row": 1
+          }
+        ],
+        "links": [
+          {
+            "from": "user",
+            "to": "app",
+            "label": "경로 선택"
+          },
+          {
+            "from": "app",
+            "to": "user",
+            "label": "적립",
+            "accent": true,
+            "offset": 40
+          },
+          {
+            "from": "city",
+            "to": "app",
+            "label": "예산",
+            "s": 1
+          },
+          {
+            "from": "app",
+            "to": "shop",
+            "label": "포인트 사용"
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">관계 · relations</p>
+
+<span class="fragment step" data-fragment-index="0"></span>
+<aside class="notes">
+<p><b>설명 목적</b> 관계 근거 템플릿(relations)이 어떻게 보이는지 확인한다</p>
+<p><b>담당·시간</b> - · 25초</p>
+<h4>대본</h4>
+<p>이 장은 관계 근거를 그림으로 보여 줍니다. 내용은 예시입니다. [→] 마칩니다.</p>
+<h4>예상 질문</h4>
+<ul><li>Q 실제 내용인가? → A 아닙니다. 템플릿 시연용 예시입니다.</li></ul>
+</aside>
+</section>
+</div></div>
+<script type="application/json" id="evidence-data">{"items":[{"id":"car-a","claim":"경로 A 배출 (예시)","value":7.98,"unit":"kg","decimals":2,"source":{"title":"예시"},"confidence":"example"},{"id":"car-b","claim":"경로 B 배출 (예시)","value":7.75,"unit":"kg","decimals":2,"source":{"title":"예시"},"confidence":"example"},{"id":"car-c","claim":"경로 C 배출 (예시)","value":9.1,"unit":"kg","decimals":2,"source":{"title":"예시"},"confidence":"example"},{"id":"car-d","claim":"경로 D 배출 (예시)","value":8.6,"unit":"kg","decimals":2,"source":{"title":"예시"},"confidence":"example"},{"id":"km-a","claim":"경로 A 거리 (예시)","value":34,"unit":"km","source":{"title":"예시"},"confidence":"example"},{"id":"km-b","claim":"경로 B 거리 (예시)","value":33,"unit":"km","source":{"title":"예시"},"confidence":"example"},{"id":"l-a","claim":"경로 A 연료 (예시)","value":3.4,"unit":"L","decimals":1,"source":{"title":"예시"},"confidence":"example"},{"id":"l-b","claim":"경로 B 연료 (예시)","value":3.7,"unit":"L","decimals":1,"source":{"title":"예시"},"confidence":"example"},{"id":"y2019","claim":"2019 배출 (예시)","value":98,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"y2020","claim":"2020 배출 (예시)","value":93,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"y2021","claim":"2021 배출 (예시)","value":96,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"y2022","claim":"2022 배출 (예시)","value":97,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"y2023","claim":"2023 배출 (예시)","value":95,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"z2019","claim":"2019 다른 부문 (예시)","value":60,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"z2020","claim":"2020 다른 부문 (예시)","value":58,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"z2021","claim":"2021 다른 부문 (예시)","value":55,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"z2022","claim":"2022 다른 부문 (예시)","value":52,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"z2023","claim":"2023 다른 부문 (예시)","value":50,"unit":"Mt","source":{"title":"예시"},"confidence":"example"},{"id":"s-road","claim":"도로 비중 (예시)","value":96,"unit":"%","source":{"title":"예시"},"confidence":"example"},{"id":"s-air","claim":"항공 비중 (예시)","value":2,"unit":"%","source":{"title":"예시"},"confidence":"example"},{"id":"s-other","claim":"기타 비중 (예시)","value":2,"unit":"%","source":{"title":"예시"},"confidence":"example"},{"id":"trips","claim":"연간 편도 횟수 (예시)","value":520,"unit":"회","source":{"title":"예시"},"confidence":"example"},{"id":"factor","claim":"1km당 배출 계수 (예시)","value":0.2348,"unit":"kg/km","decimals":4,"source":{"title":"예시"},"confidence":"example"},{"id":"users-a","claim":"도시 A 이용자 (예시)","value":120,"unit":"만 명","source":{"title":"예시"},"confidence":"example"},{"id":"users-b","claim":"도시 B 이용자 (예시)","value":80,"unit":"만 명","source":{"title":"예시"},"confidence":"example"},{"id":"users-c","claim":"도시 C 이용자 (예시)","value":45,"unit":"만 명","source":{"title":"예시"},"confidence":"example"},{"id":"cut-a","claim":"도시 A 감소 (예시)","value":12,"unit":"%","source":{"title":"예시"},"confidence":"example"},{"id":"cut-b","claim":"도시 B 감소 (예시)","value":7,"unit":"%","source":{"title":"예시"},"confidence":"example"},{"id":"cut-c","claim":"도시 C 감소 (예시)","value":4,"unit":"%","source":{"title":"예시"},"confidence":"example"},{"id":"policy-note","claim":"정책 연표 근거 (예시)","text":"예시 문장","source":{"title":"예시"},"confidence":"example"},{"id":"pb-cells","claim":"보조배터리 셀 수 (예시)","value":6,"unit":"개","decimals":0,"source":{"title":"예시"},"confidence":"example"},{"id":"pb-cell-mm","claim":"18650 셀 길이","value":65,"unit":"mm","decimals":0,"source":{"title":"18650 원통형 셀 규격 (지름 18 mm · 길이 65 mm)"},"confidence":"example"}]}</script>
+<script type="application/json" id="asset-data">{"items":[{"id":"demo-screen","kind":"screenshot","credit":"예시 화면 (자체 제작)","file":"web/assets/demo-screen.png"}]}</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

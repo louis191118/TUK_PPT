@@ -1,0 +1,16 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>kit3d</title>
+<body style="margin:0;background:#fff">
+<script type="module">
+  // deck.mjs build3d가 여는 페이지: 장면 스크립트를 불러 dk(kit3d)로 돌린다. window.__DK는 build3d가 미리 넣는다.
+  import * as dk from './kit3d.js';
+  try {
+    const mod = await import(window.__DK.script);
+    await (mod.default || mod.build)(dk);
+    window.__dkDone = { ok: true };
+  } catch (e) {
+    console.error(e?.stack || String(e));
+    window.__dkDone = { ok: false, error: String(e?.message || e) };
+  }
+</script>

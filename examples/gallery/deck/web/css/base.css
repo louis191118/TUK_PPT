@@ -1,0 +1,133 @@
+/* deck-kit 배치·크기·단계 규칙 (1920×1080). 색·글꼴은 theme.css 토큰만 쓴다. 주제가 바뀌어도 이 파일은 그대로 둔다. */
+:root {
+  --fs-hero: 190px; --fs-hero-unit: 110px; --fs-head: 64px; --fs-sub: 56px; --fs-lede: 40px;
+  --fs-body: 36px; --fs-label: 30px; --fs-tick: 26px; --fs-note: 24px;
+  --ls-hero: -0.05em; --ls-head: -0.03em; --ls-body: -0.01em;
+  --pad-x: 144px; --head-top: 120px; --body-y: 280px; --body-h: 670px; --content-w: 1632px;
+  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px;
+  --ease-out: cubic-bezier(.2,.7,.2,1); --d-frag: 480ms;
+}
+
+html, body { background: var(--c-bg); }
+.reveal { font-family: var(--f); color: var(--c-text); font-size: var(--fs-body); }
+.reveal .slides { text-align: left; }
+.reveal .slides > section { width: 1920px; height: 1080px; padding: 0; box-sizing: border-box; letter-spacing: var(--ls-body); }
+.reveal .slides > section > * { position: absolute; margin: 0; }
+.reveal h1, .reveal h2, .reveal p { font-family: var(--f); color: inherit; text-transform: none; }
+
+/* 헤드라인: 주장 한 문장, 한 줄 */
+.reveal .head { left: var(--pad-x); top: var(--head-top); width: var(--content-w); font-size: var(--fs-head); font-weight: 700; line-height: 1.2; letter-spacing: var(--ls-head); white-space: nowrap; }
+.reveal .lede { left: var(--pad-x); top: calc(var(--head-top) + 96px); width: var(--content-w); font-size: var(--fs-lede); font-weight: 500; color: var(--c-text-2); line-height: 1.35; }
+
+/* 본문(그림) 영역 */
+.reveal .body { left: var(--pad-x); top: var(--body-y); width: var(--content-w); height: var(--body-h); }
+.reveal .body.split-l { width: 1008px; }
+.reveal .side { left: 1296px; top: var(--body-y); width: 480px; }
+.reveal figure.viz svg { display: block; overflow: visible; }
+
+/* 하단 한 줄: 왼쪽 가정(.foot-l, 작성), 오른쪽 출처·장 번호(자동) */
+.reveal .foot-l { left: var(--pad-x); bottom: 40px; max-width: 900px; font-size: var(--fs-note); color: var(--c-text-3); line-height: 1.35; }
+.reveal .foot-r { right: var(--pad-x); bottom: 40px; max-width: 760px; font-size: var(--fs-note); color: var(--c-text-3); text-align: right; line-height: 1.35; }
+.reveal .foot-r .pg { color: var(--c-text); font-weight: 600; margin-left: var(--s3); }
+
+/* 큰 숫자 (장당 하나) */
+.reveal .hero { display: flex; align-items: baseline; gap: var(--s1); }
+.reveal .hero-num { font-size: var(--fs-hero); font-weight: 700; letter-spacing: var(--ls-hero); line-height: .9; color: var(--c-accent); font-variant-numeric: tabular-nums; }
+.reveal .hero-unit { font-size: var(--fs-hero-unit); font-weight: 700; letter-spacing: -0.03em; color: var(--c-accent); }
+.reveal .hero-cap { position: static; margin-top: var(--s5); font-size: var(--fs-sub); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; }
+
+/* 인용·사례 */
+.reveal .quote { font-size: 56px; font-weight: 600; line-height: 1.3; letter-spacing: -0.03em; }
+.reveal .quote-src { position: static; margin-top: var(--s4); font-size: var(--fs-tick); color: var(--c-text-3); }
+
+/* 글 위계 (그림 라벨용 HTML) */
+.reveal .t-strong { color: var(--c-text); font-weight: 700; }
+.reveal .t-2 { color: var(--c-text-2); }
+.reveal .t-3 { color: var(--c-text-3); }
+.reveal .t-pk { color: var(--c-accent-text); font-weight: 700; }
+
+/* ── SVG 그림 ── */
+.reveal svg text { font-family: var(--f); }
+.reveal svg .mid { text-anchor: middle; }
+.reveal svg .end { text-anchor: end; }
+.reveal svg .axis, .reveal svg .base { stroke: var(--c-text); stroke-width: 2; fill: none; }
+.reveal svg .grid { stroke: var(--c-hair); stroke-width: 2; }
+.reveal svg .bar { fill: var(--c-bar); }
+.reveal svg .pk { fill: var(--c-accent); }
+.reveal svg .bar.off { fill: none; stroke: var(--c-bar-off); stroke-width: 3; stroke-dasharray: 8 8; }
+.reveal svg .ref { stroke: var(--c-text-3); stroke-width: 3; stroke-dasharray: 3 9; stroke-linecap: round; fill: none; }
+.reveal svg .lbl { font-size: var(--fs-tick); font-weight: 500; fill: var(--c-text-2); }
+.reveal svg .val { font-size: var(--fs-label); font-weight: 600; fill: var(--c-text); font-variant-numeric: tabular-nums; }
+.reveal svg .ttl { font-size: var(--fs-label); font-weight: 700; fill: var(--c-text); }
+.reveal svg .note { font-size: var(--fs-tick); font-weight: 500; fill: var(--c-text-3); }
+.reveal svg .big { font-size: 96px; font-weight: 700; letter-spacing: -0.04em; fill: var(--c-accent); }
+.reveal svg .lbl, .reveal svg .val, .reveal svg .note { paint-order: stroke; stroke: var(--c-halo); stroke-width: 8px; stroke-linejoin: round; }
+.reveal svg text.pk { fill: var(--c-accent-text); font-weight: 700; }
+.reveal svg .ln { fill: none; stroke: var(--c-bar); stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+.reveal svg .ln.pk { stroke: var(--c-accent); stroke-width: 6; fill: none; }
+.reveal svg .dot { fill: var(--c-bar); }
+.reveal svg .dot.pk { fill: var(--c-accent); }
+.reveal svg .arrow { stroke: var(--c-text-3); stroke-width: 2; fill: none; }
+.reveal svg .arrow-h { fill: var(--c-text-3); }
+.reveal svg .uline { fill: var(--c-accent); }
+
+/* 산식 (HTML 격자): 단어식 → 같은 자리에 숫자 */
+.reveal .eq { display: grid; grid-auto-flow: column; justify-content: start; column-gap: var(--s5); row-gap: var(--s3); align-items: baseline; }
+.reveal .eq .w { font-size: 44px; font-weight: 600; color: var(--c-text-2); letter-spacing: -0.02em; }
+.reveal .eq .n { font-size: 72px; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.reveal .eq .n.pk { color: var(--c-accent); }
+.reveal .eq .u { font-size: var(--fs-tick); color: var(--c-text-3); }
+.reveal .eq .op { font-size: 56px; font-weight: 500; color: var(--c-text-3); }
+
+/* ── 단계 공개: section[data-step] = 보인 단계 수 (main.js가 맞춘다) ──
+   .s1~.s3 = 그 단계부터 보임 · .a1~.a3 = 그 단계 전에는 강조색 대신 중립색 · .d1~.d3 = 그 단계부터 흐리게 */
+.reveal .s1, .reveal .s2, .reveal .s3, .reveal .d1, .reveal .d2, .reveal .d3 { transition: opacity var(--d-frag) var(--ease-out); }
+.reveal svg .pk { transition: fill var(--d-frag) var(--ease-out), stroke var(--d-frag) var(--ease-out); }
+section[data-step="0"] :is(.s1, .s2, .s3),
+section[data-step="1"] :is(.s2, .s3),
+section[data-step="2"] .s3 { opacity: 0; }
+section[data-step="0"] svg :is(.a1, .a2, .a3).pk:not(text),
+section[data-step="1"] svg :is(.a2, .a3).pk:not(text),
+section[data-step="2"] svg .a3.pk:not(text) { fill: var(--c-bar); }
+section[data-step="0"] svg :is(.a1, .a2, .a3).ln.pk,
+section[data-step="1"] svg :is(.a2, .a3).ln.pk,
+section[data-step="2"] svg .a3.ln.pk { stroke: var(--c-bar); fill: none; }
+section[data-step="0"] :is(.a1, .a2, .a3).pk:is(text, span, div, p),
+section[data-step="1"] :is(.a2, .a3).pk:is(text, span, div, p),
+section[data-step="2"] .a3.pk:is(text, span, div, p) { fill: var(--c-text-2); color: var(--c-text); }
+section[data-step="1"] .d1, section[data-step="2"] :is(.d1, .d2), section[data-step="3"] :is(.d1, .d2, .d3) { opacity: .25; }
+.reveal .fragment.step { display: none; }
+
+/* ── 정성 그림 ── */
+.reveal svg .dot.on { fill: var(--c-text-2); }
+.reveal svg .dot.ink { fill: var(--c-text); }
+.reveal svg .ring { fill: var(--c-bg); stroke: var(--c-text-2); stroke-width: 3; }
+.reveal svg .ring.pk { stroke: var(--c-accent); fill: var(--c-bg); }
+.reveal svg .dash-ln { stroke: var(--c-text-3); stroke-width: 3; stroke-dasharray: 2 10; stroke-linecap: round; fill: none; }
+.reveal svg .none-ln { stroke: var(--c-bar-off); stroke-width: 3; stroke-linecap: round; }
+.reveal svg .cyc { fill: none; stroke: var(--c-bar); stroke-width: 3; }
+.reveal svg .arrow.pk { stroke: var(--c-accent); stroke-width: 4; }
+.reveal svg .arrow-h.pk { fill: var(--c-accent); }
+.reveal svg .leader { stroke: var(--c-text); stroke-width: 1.5; }
+.reveal svg .leader.pk { stroke: var(--c-accent); stroke-width: 2.5; }
+.reveal svg .leader.dashed { stroke-dasharray: 6 6; }
+/* 대비 (HTML 격자): 이름 | A | → | B */
+.reveal .cmp { display: grid; grid-template-columns: 320px 1fr 64px 1fr; column-gap: var(--s4); row-gap: var(--s5); align-items: baseline; }
+.reveal .cmp-h { font-size: var(--fs-label); font-weight: 600; color: var(--c-text-3); }
+.reveal .cmp-h.cmp-b { color: var(--c-accent-text); font-weight: 700; }
+.reveal .cmp-l { font-size: var(--fs-tick); color: var(--c-text-3); font-weight: 500; }
+.reveal .cmp-a { font-size: var(--fs-body); color: var(--c-text-2); line-height: 1.3; }
+.reveal .cmp-b { font-size: var(--fs-body); color: var(--c-text); font-weight: 600; line-height: 1.3; }
+.reveal .cmp-arrow { font-size: var(--fs-body); color: var(--c-text-4); }
+/* 실물 화면: 화면 자체를 둥글게 자르고 1px 선만 (베젤·그림자 없음) */
+.reveal .screen { border-radius: 36px; overflow: hidden; outline: 1px solid var(--c-hair); outline-offset: -1px; background: var(--c-surface); }
+.reveal .screen img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.reveal .screen.mock img { filter: grayscale(1); opacity: .85; }
+/* 지금 단계만 진하게: .hx는 평소 흐린 글자, .h1~.h3은 그 단계에서만 진하게 */
+.reveal svg text.hx { fill: var(--c-text-3); font-weight: 600; transition: fill var(--d-frag) var(--ease-out); }
+.reveal .hx:not(text) { color: var(--c-text-3); }
+section[data-step="1"] svg text.h1, section[data-step="2"] svg text.h2, section[data-step="3"] svg text.h3 { fill: var(--c-text); font-weight: 700; }
+section[data-step="1"] .h1:not(text), section[data-step="2"] .h2:not(text), section[data-step="3"] .h3:not(text) { color: var(--c-text); font-weight: 700; }
+
+/* 없는 근거 id (빌드 오류로 드러나게) */
+.reveal .num-missing { color: #C62828 !important; fill: #C62828 !important; }

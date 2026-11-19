@@ -1,0 +1,24 @@
+<section data-slug="asset3d" data-wait="3200">
+  <figure class="viz" data-viz="custom" data-module="viz/inspect3d.js">
+  <script type="application/json">{
+    "models": [ { "file": "assets/3d/power-bank.glb" } ],
+    "poster": "assets/3d/power-bank-poster.png",
+    "kicker": "보조배터리 · 도식",
+    "credit": "직접 만든 도식 조립품 · 셀 규격만 실제(18650) · 예시 치수",
+    "shadow": [0.26, 0.13], "floorDrop": 0.03,
+    "groups": {
+      "shell": { "name": "케이스", "explode": [0, 0.05, 0], "order": 0, "shell": true, "sub": { "case_top": [0, 0.03, 0] } },
+      "battery": { "name": "셀 · 홀더", "explode": [-0.02, -0.02, 0], "order": 1, "sub": { "nickel_strip": [0, 0.012, 0] } },
+      "board": { "name": "회로 기판", "explode": [0.035, 0.03, 0], "order": 2 },
+      "ports": { "name": "단자 · 표시등", "explode": [0.07, 0.05, 0], "order": 2 }
+    },
+    "steps": [
+      { "name": "외관", "paint": 1, "ex": 0, "cam": { "t": [0, 0.013, 0], "az": 38, "el": 18, "d": 0.36 }, "idleSpin": true },
+      { "name": "투시", "paint": 0, "ghost": 1, "ex": 0, "cam": { "t": [0, 0.013, 0], "az": 28, "el": 26, "d": 0.36 } },
+      { "name": "분해", "paint": 0, "ghost": 0.8, "ex": 1, "tags": true, "cam": { "t": [0.03, 0.035, 0], "az": 62, "el": 22, "d": 0.62 } },
+      { "name": "셀", "paint": 0, "ghost": 0.18, "ex": 1, "focus": ["battery"], "sub": 1, "anchor": "cells", "cam": { "t": [-0.01, 0.0, 0], "az": 24, "el": 40, "d": 0.4 }, "card": { "title": "원통형 셀", "num": "pb-cells", "note": "18650 · 길이 {pb-cell-mm}" } },
+      { "name": "조립", "paint": 1, "ex": 0, "cam": { "t": [0, 0.013, 0], "az": -32, "el": 14, "d": 0.36 }, "idleSpin": true }
+    ]
+  }</script>
+  </figure>
+</section>

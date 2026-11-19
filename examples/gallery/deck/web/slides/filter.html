@@ -1,0 +1,37 @@
+<section data-slug="filter">
+  <h1 class="head">평균은 이렇게 정한다</h1>
+  <figure class="viz body" data-viz="filter">
+    <script type="application/json">
+      {
+        "rules": [
+          "중복 제거",
+          "통행 불가 제외",
+          "평균 계산"
+        ],
+        "items": [
+          {
+            "label": "실시간 추천"
+          },
+          {
+            "label": "거리우선"
+          },
+          {
+            "label": "고속도로"
+          },
+          {
+            "label": "고속도로 2",
+            "out": 1,
+            "why": "같은 길"
+          },
+          {
+            "label": "국도",
+            "out": 2,
+            "why": "통제"
+          }
+        ],
+        "result": "남은 세 후보로 평균"
+      }
+    </script>
+  </figure>
+  <p class="foot-l">기준·규칙 · filter</p>
+</section>

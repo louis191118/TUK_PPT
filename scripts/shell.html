@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:,">
+<!-- deck.mjs assemble이 만든 파일. 직접 고치지 않는다: slides/<slug>.html·slides/<slug>.md·evidence/를 고치고 다시 assemble -->
+<link rel="stylesheet" href="vendor/reveal/reset.css">
+<link rel="stylesheet" href="vendor/reveal/reveal.css">
+<link rel="stylesheet" href="vendor/fonts/pretendard/pretendard.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+{{SLIDES}}
+</div></div>
+<script type="application/json" id="evidence-data">{{EVIDENCE}}</script>
+<script type="application/json" id="asset-data">{{ASSETS}}</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

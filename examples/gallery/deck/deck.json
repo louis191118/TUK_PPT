@@ -1,0 +1,32 @@
+{
+  "title": "템플릿 갤러리",
+  "lang": "ko",
+  "theme": "minimal",
+  "timeLimitSec": 600,
+  "timeTargetSec": 558,
+  "slides": [
+    "km-cells",
+    "scene3d",
+    "asset3d",
+    "compare",
+    "flip",
+    "trend",
+    "share",
+    "scale",
+    "history",
+    "how",
+    "formula",
+    "relation",
+    "result",
+    "position",
+    "contrast",
+    "chain",
+    "tree",
+    "cycle",
+    "matrix",
+    "gaps",
+    "screen",
+    "filter",
+    "relations"
+  ]
+}

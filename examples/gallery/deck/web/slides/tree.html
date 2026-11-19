@@ -1,0 +1,48 @@
+<section data-slug="tree">
+  <h1 class="head">배출 계산은 세 갈래</h1>
+  <figure class="viz body" data-viz="tree">
+    <script type="application/json">
+      {
+        "root": {
+          "label": "경로 배출",
+          "sub": "kgCO₂"
+        },
+        "children": [
+          {
+            "label": "자동차",
+            "children": [
+              {
+                "label": "거리"
+              },
+              {
+                "label": "연료별 계수"
+              }
+            ]
+          },
+          {
+            "label": "대중교통",
+            "accent": true,
+            "s": 1,
+            "children": [
+              {
+                "label": "탑승 구간만"
+              },
+              {
+                "label": "수단별 계수"
+              }
+            ]
+          },
+          {
+            "label": "도보·자전거",
+            "children": [
+              {
+                "label": "0으로 처리"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </figure>
+  <p class="foot-l">구조 · tree</p>
+</section>

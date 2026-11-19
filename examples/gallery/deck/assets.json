@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "id": "demo-screen",
+      "kind": "screenshot",
+      "status": "chosen",
+      "file": "web/assets/demo-screen.png",
+      "source": { "author": "KPU_PPT", "license": "자체 제작 (예시 도식)" },
+      "credit": "예시 화면 (자체 제작)",
+      "fits": ["screen"],
+      "why": "실물 화면 템플릿 시연",
+      "fit": { "purpose": 3, "real": 1, "design": 5, "license": 5, "resolution": 5 }
+    },
+    {
+      "id": "ref-owid",
+      "kind": "reference",
+      "status": "candidate",
+      "source": { "url": "https://ourworldindata.org/" },
+      "fits": ["trend"],
+      "why": "선 그래프 끝점 직접 라벨, 범례 없음 — 추세 장의 참고"
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "question": "템플릿 시연용 예시 값 (실제 데이터 아님)",
+  "items": [
+    {
+      "id": "car-a",
+      "claim": "경로 A 배출 (예시)",
+      "value": 7.98,
+      "unit": "kg",
+      "decimals": 2,
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "car-b",
+      "claim": "경로 B 배출 (예시)",
+      "value": 7.75,
+      "unit": "kg",
+      "decimals": 2,
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "car-c",
+      "claim": "경로 C 배출 (예시)",
+      "value": 9.1,
+      "unit": "kg",
+      "decimals": 2,
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "car-d",
+      "claim": "경로 D 배출 (예시)",
+      "value": 8.6,
+      "unit": "kg",
+      "decimals": 2,
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "km-a",
+      "claim": "경로 A 거리 (예시)",
+      "value": 34,
+      "unit": "km",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "km-b",
+      "claim": "경로 B 거리 (예시)",
+      "value": 33,
+      "unit": "km",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "l-a",
+      "claim": "경로 A 연료 (예시)",
+      "value": 3.4,
+      "unit": "L",
+      "decimals": 1,
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "l-b",
+      "claim": "경로 B 연료 (예시)",
+      "value": 3.7,
+      "unit": "L",
+      "decimals": 1,
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "y2019",
+      "claim": "2019 배출 (예시)",
+      "value": 98,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "y2020",
+      "claim": "2020 배출 (예시)",
+      "value": 93,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "y2021",
+      "claim": "2021 배출 (예시)",
+      "value": 96,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "y2022",
+      "claim": "2022 배출 (예시)",
+      "value": 97,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "y2023",
+      "claim": "2023 배출 (예시)",
+      "value": 95,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "z2019",
+      "claim": "2019 다른 부문 (예시)",
+      "value": 60,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "z2020",
+      "claim": "2020 다른 부문 (예시)",
+      "value": 58,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "z2021",
+      "claim": "2021 다른 부문 (예시)",
+      "value": 55,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "z2022",
+      "claim": "2022 다른 부문 (예시)",
+      "value": 52,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "z2023",
+      "claim": "2023 다른 부문 (예시)",
+      "value": 50,
+      "unit": "Mt",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "s-road",
+      "claim": "도로 비중 (예시)",
+      "value": 96,
+      "unit": "%",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "s-air",
+      "claim": "항공 비중 (예시)",
+      "value": 2,
+      "unit": "%",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "s-other",
+      "claim": "기타 비중 (예시)",
+      "value": 2,
+      "unit": "%",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "trips",
+      "claim": "연간 편도 횟수 (예시)",
+      "value": 520,
+      "unit": "회",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "factor",
+      "claim": "1km당 배출 계수 (예시)",
+      "value": 0.2348,
+      "unit": "kg/km",
+      "decimals": 4,
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "users-a",
+      "claim": "도시 A 이용자 (예시)",
+      "value": 120,
+      "unit": "만 명",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "users-b",
+      "claim": "도시 B 이용자 (예시)",
+      "value": 80,
+      "unit": "만 명",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "users-c",
+      "claim": "도시 C 이용자 (예시)",
+      "value": 45,
+      "unit": "만 명",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "cut-a",
+      "claim": "도시 A 감소 (예시)",
+      "value": 12,
+      "unit": "%",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "cut-b",
+      "claim": "도시 B 감소 (예시)",
+      "value": 7,
+      "unit": "%",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "cut-c",
+      "claim": "도시 C 감소 (예시)",
+      "value": 4,
+      "unit": "%",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "policy-note",
+      "claim": "정책 연표 근거 (예시)",
+      "text": "예시 문장",
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "pb-cells",
+      "claim": "보조배터리 셀 수 (예시)",
+      "value": 6,
+      "unit": "개",
+      "decimals": 0,
+      "source": {
+        "title": "예시"
+      },
+      "confidence": "example"
+    },
+    {
+      "id": "pb-cell-mm",
+      "claim": "18650 셀 길이",
+      "value": 65,
+      "unit": "mm",
+      "decimals": 0,
+      "source": {
+        "title": "18650 원통형 셀 규격 (지름 18 mm · 길이 65 mm)"
+      },
+      "confidence": "example"
+    }
+  ]
+}
